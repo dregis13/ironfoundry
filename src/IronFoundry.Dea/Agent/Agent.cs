@@ -313,7 +313,7 @@
 
             StopDroplet stopDropletMsg = Message.FromJson<StopDroplet>(message);
 
-            uint dropletID = stopDropletMsg.DropletID;
+            Guid dropletID = stopDropletMsg.DropletID;
 
             dropletManager.ForAllInstances(dropletID, (instance) =>
                 {

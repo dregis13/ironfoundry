@@ -36,7 +36,7 @@
         public string Version { get; set; }
 
         [JsonProperty(PropertyName = "droplet")]
-        public uint Droplet { get; set; }
+        public Guid Droplet { get; set; }
 
         [JsonProperty(PropertyName = "instance"), JsonConverter(typeof(VcapGuidConverter))]
         public Guid InstanceID { get; set; }

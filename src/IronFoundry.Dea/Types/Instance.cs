@@ -45,6 +45,7 @@
                 Framework      = droplet.Framework;
                 Staged         = droplet.Name;
                 Sha1           = droplet.Sha1;
+                Partition      = droplet.Partition;
                 logID          = String.Format("(name={0} app_id={1} instance={2:N} index={3})", Name, DropletID, InstanceID, InstanceIndex);
                 Staged         = String.Format("{0}-{1}-{2:N}", Name, InstanceIndex, InstanceID);
                 Dir            = Path.Combine(appDir, Staged);
@@ -73,7 +74,7 @@
         }
 
         [JsonProperty(PropertyName = "droplet_id")]
-        public uint DropletID { get; set; }
+        public Guid DropletID { get; set; }
 
         [JsonProperty(PropertyName = "instance_id"), JsonConverter(typeof(VcapGuidConverter))]
         public Guid InstanceID { get; set; }
@@ -158,6 +159,9 @@
 
         [JsonProperty(PropertyName = "host")]
         public string Host { get; set; }
+
+        [JsonProperty(PropertyName = "cc_partition")]
+        public string Partition { get; set; }
 
         [JsonIgnore]
         public bool IsStarting

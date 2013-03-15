@@ -1,11 +1,12 @@
 ﻿namespace IronFoundry.Dea.Types
 {
+    using System;
     using Newtonsoft.Json;
 
     public class Discover : EntityBase
     {
         [JsonProperty(PropertyName = "droplet")]
-        public uint DropletID { get; set; }
+        public Guid DropletID { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }

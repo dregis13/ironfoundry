@@ -1,11 +1,12 @@
 ﻿namespace IronFoundry.Dea.Types
 {
+    using System;
     using Newtonsoft.Json;
 
     public class Droplet : EntityBase
     {
         [JsonProperty(PropertyName = "droplet")]
-        public uint ID { get; set; }
+        public Guid ID { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
@@ -45,6 +46,9 @@
 
         [JsonProperty(PropertyName = "index")]
         public uint InstanceIndex { get; set; }
+
+        [JsonProperty(PropertyName = "cc_partition")]
+        public string Partition { get; set; }
 
         [JsonIgnore]
         public bool FrameworkSupported

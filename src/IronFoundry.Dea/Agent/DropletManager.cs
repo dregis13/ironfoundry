@@ -7,9 +7,9 @@
 
     public class DropletManager : IDropletManager
     {
-        private readonly IDictionary<uint, IDictionary<Guid, Instance>> droplets = new Dictionary<uint, IDictionary<Guid, Instance>>();
+        private readonly IDictionary<Guid, IDictionary<Guid, Instance>> droplets = new Dictionary<Guid, IDictionary<Guid, Instance>>();
 
-        public void Add(uint dropletID, IEnumerable<Instance> instances)
+        public void Add(Guid dropletID, IEnumerable<Instance> instances)
         {
             lock (droplets)
             {
@@ -20,7 +20,7 @@
             }
         }
 
-        public void Add(uint dropletID, Instance instance)
+        public void Add(Guid dropletID, Instance instance)
         {
             lock (droplets)
             {
@@ -56,7 +56,7 @@
             ForAllInstances(null, instanceAction);
         }
 
-        public void ForAllInstances(uint dropletID, Action<Instance> instanceAction)
+        public void ForAllInstances(Guid dropletID, Action<Instance> instanceAction)
         {
             lock (droplets)
             {
@@ -82,7 +82,7 @@
             }
         }
 
-        public void ForAllInstances(Action<uint> dropletAction, Action<Instance> instanceAction)
+        public void ForAllInstances(Action<Guid> dropletAction, Action<Instance> instanceAction)
         {
             lock (droplets)
             {
@@ -90,12 +90,12 @@
                 {
                     return;
                 }
-                var dropletList = new List<KeyValuePair<uint, IDictionary<Guid, Instance>>>(droplets);
-                foreach (KeyValuePair<uint, IDictionary<Guid, Instance>> kvp in dropletList)
+                var dropletList = new List<KeyValuePair<Guid, IDictionary<Guid, Instance>>>(droplets);
+                foreach (KeyValuePair<Guid, IDictionary<Guid, Instance>> kvp in dropletList)
                 {
                     if (droplets.ContainsKey(kvp.Key))
                     {
-                        uint dropletID = kvp.Key;
+                        Guid dropletID = kvp.Key;
                         if (null != dropletAction)
                         {
                             dropletAction(dropletID);
@@ -165,7 +165,7 @@
 
         public void InstanceStopped(Instance instance)
         {
-            uint dropletID = instance.DropletID;
+            Guid dropletID = instance.DropletID;
 
             lock (droplets)
             {

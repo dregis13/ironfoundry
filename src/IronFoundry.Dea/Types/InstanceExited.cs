@@ -15,7 +15,7 @@
         }
 
         [JsonProperty(PropertyName = "droplet")]
-        public uint ID { get; private set; }
+        public Guid ID { get; private set; }
 
         [JsonProperty(PropertyName = "version")]
         public string Version { get; private set; }

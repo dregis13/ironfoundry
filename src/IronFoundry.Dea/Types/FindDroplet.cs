@@ -6,7 +6,7 @@
     public class FindDroplet : Message
     {
         [JsonProperty(PropertyName = "droplet")]
-        public uint DropletID { get; set; }
+        public Guid DropletID { get; set; }
 
         [JsonProperty(PropertyName = "version")]
         public string Version { get; set; }

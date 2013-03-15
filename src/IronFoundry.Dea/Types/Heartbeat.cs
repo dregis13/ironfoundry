@@ -8,6 +8,7 @@
     {
         public Heartbeat(Instance instance)
         {
+            Partition      = instance.Partition;
             Droplet        = instance.DropletID;
             Version        = instance.Version;
             InstanceID     = instance.InstanceID;
@@ -16,8 +17,11 @@
             StateTimestamp = instance.StateTimestamp;
         }
 
+        [JsonProperty(PropertyName = "cc_partition")]
+        public string Partition { get; private set; }
+        
         [JsonProperty(PropertyName = "droplet")]
-        public uint Droplet { get; private set; }
+        public Guid Droplet { get; private set; }
 
         [JsonProperty(PropertyName = "version")]
         public string Version { get; private set; }

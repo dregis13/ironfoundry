@@ -1,1 +1,21 @@
 /var/vcap/jobs/cloud_controller_ng/config/runtimes.yml - add clr20 and clr40
+
+clr20:
+      version: "2.0.50727"
+      description: ".NET CLR 2.0"
+clr40:
+      version: "4.0.30319"
+      description: ".NET CLR 4.0"
+
+staging
+
+jobs/cloud_controller_ng/templates/aspdotnet_staging.yml
+
+name: "aspdotnet"
+runtimes:
+  - clr20:
+      default: false
+  - clr40:
+      default: true
+detection:
+  - "Web.config" : true
